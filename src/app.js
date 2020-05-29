@@ -11,6 +11,28 @@ class App extends React.Component {
         }
     }
 
+    componentDidMount() {
+        try {
+            const json = localStorage.getItem("options");
+            const options = JSON.parse(json);
+            this.setState(() => ({ options }));
+
+            if (options) {
+                this.setState(() => ({ options }));
+            }
+            console.log("component did mount");
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
+    }
+
     handleClearOptions() {
         this.setState( () => ({ options: [] }));
     }
@@ -85,6 +107,7 @@ const Action = (props) => (
 const Options = (props) => (
     <div>
         <button onClick={props.handleClearOptions}>Clear Options</button>
+        {props.options.length === 0 && <p>Add an option to get started!</p>}
         {props.options.map( (option, i) => {
             return (
               <Option
@@ -125,6 +148,10 @@ class AddOption extends React.Component {
         const error = this.props.handleAddOption(option);
         
         this.setState(() => ({ error }));
+
+        if (!error) {
+            e.target.elements.option.value = '';
+        }
     }
 
     render() {
