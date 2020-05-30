@@ -13,8 +13,14 @@ class Counter extends React.Component {
         const strCount = localStorage.getItem('count');
         const count = parseInt(strCount, 10);
         
-        if (!isNaN(count)) {
-            this.setState(() => ({ count }));
+        try {
+            const strCount = localStorage.getItem("count");
+            const count = parseInt(strCount, 10);
+            if (!isNaN(count)) {
+                this.setState(() => ({ count }));
+            }
+        } catch (e) {
+          console.log(e);
         }
     }
 
@@ -30,7 +36,7 @@ class Counter extends React.Component {
     }
 
     handleMinusOne() {
-        this.setState((prevState) => ({ count: prevState.count - 1 }));
+        this.setState({ count: this.state.count -= 1 });
     }
 
     handleReset() {
