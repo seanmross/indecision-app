@@ -9,7 +9,7 @@
     "serve": "live-server public",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d public"
   },
   "author": "",
   "license": "ISC",
