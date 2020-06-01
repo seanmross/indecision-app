@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://scottie6.github.io/indecision-app/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "live-server public",
     "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
